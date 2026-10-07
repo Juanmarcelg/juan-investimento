@@ -1,13 +1,23 @@
 {
-  "background_color": "#6d28d9",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "JUAN  INVESTIMENTO",
-  "orientation": "any",
-  "scope": "/",
+  "name": "JUAN INVESTIMENTO",
   "short_name": "JUAN INVEST",
-  "start_url": "/",
+  "description": "Controle de investimentos e finanças pessoais",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#6d28d9",
   "theme_color": "#121212",
-  "description": "CONTROLE     DE  INVESTIMENTO  E  FINANÇAS PESSOAIS",
-  "id": "juan- investimento"
+  "icons": [
+    {
+      "src": "./ícone-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./ícone-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
