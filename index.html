@@ -9,26 +9,6 @@
 
 .authgate{position:fixed;inset:0;z-index:1000;background:linear-gradient(135deg,#e8f2ff 0%,#f7fbff 55%,#e5f8ef 100%);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}.authbox{width:min(100%,460px);background:#fff;border:1px solid #dbe8fb;border-radius:22px;padding:26px;box-shadow:0 20px 70px #123b771a}.authlogo{font-size:25px;font-weight:850;letter-spacing:-.8px;color:#0756d9}.authlogo span{font-size:14px;letter-spacing:0;color:#55709f;font-weight:650}.authbox h2{margin:17px 0 5px;color:#102b72;font-size:25px}.authsub{margin:0 0 18px;color:#5d7097}.googlebtn{width:100%;padding:12px;border:1px solid #cbd9ec;background:white;border-radius:10px;color:#20365c;font-weight:700}.authdivider{display:flex;align-items:center;gap:10px;color:#7a8bab;font-size:11px;margin:16px 0}.authdivider:before,.authdivider:after{content:'';height:1px;background:#e4ebf5;flex:1}.authbox form{display:grid;gap:10px}.authsubmit{width:100%;margin-top:3px;padding:12px}.authwarning{font-size:11px;line-height:1.5;color:#8a4b00;background:#fff6e8;border:1px solid #ffe1b1;border-radius:10px;padding:11px;margin-top:15px}.demobtn{width:100%;margin-top:12px;padding:10px;border:1px solid #dbe8fb;border-radius:9px;background:#f4f8ff;color:#1b4f9f;font-weight:650}.authprivacy{text-align:center;margin:12px 0 0}@media(max-width:480px){.authbox{padding:20px}.authbox h2{font-size:22px}}
 </style></head><body>
-<div id="authGate" class="authgate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
- <div class="authbox">
-  <div class="authlogo">JUAN <span>Investimento</span></div>
-  <h2 id="authTitle">Seu dinheiro, seus planos.</h2>
-  <p class="authsub">Entre na sua conta ou crie um cadastro para começar.</p>
-  <button type="button" class="googlebtn" id="googleLogin">🌐 Continuar com Google / Gmail</button>
-  <div class="authdivider"><span>ou use seu e-mail</span></div>
-  <form id="authForm">
-   <div class="field"><label>Nome completo (para cadastro)</label><input id="authName" autocomplete="name" placeholder="Seu nome"></div>
-   <div class="field"><label>E-mail</label><input id="authEmail" type="email" autocomplete="email" required placeholder="voce@exemplo.com"></div>
-   <div class="field"><label>Telefone (opcional)</label><input id="authPhone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000"></div>
-   <div class="field"><label>Endereço (opcional)</label><input id="authAddress" autocomplete="street-address" placeholder="Rua, número, cidade"></div>
-   <div class="field"><label>Senha</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo de 8 caracteres"></div>
-   <button type="submit" class="primary authsubmit">Entrar / preparar cadastro</button>
-  </form>
-  <div class="authwarning"><strong>Autenticação real ainda não configurada.</strong><br>Esta página HTML não cria contas seguras nem separa dados entre usuários. Para ativar login Google/e-mail, precisamos conectar um provedor de autenticação e banco de dados (por exemplo, Supabase ou Firebase) e configurar as chaves públicas e regras de segurança no projeto. A senha não será salva por esta demonstração.</div>
-  <button type="button" class="demobtn" id="localDemo">Abrir demonstração local sem conta segura</button>
-  <p class="tiny authprivacy">Não use dados financeiros reais nesta demonstração local. Os dados ficam neste navegador.</p>
- </div>
-</div>
 <header class="top"><div class="head"><div class="brand"><div class="logo">▥</div><div><h1>JUAN Investimento</h1><p>Seu dinheiro, seus planos, um futuro mais tranquilo.</p></div></div><label class="search">⌕ <input id="searchAll" placeholder="Buscar despesas, receitas, metas, cartões..."></label><div class="headright"><select class="selectmonth" id="monthTop" aria-label="Mês de referência"></select><button class="bell" id="showAlerts" title="Notificações">♧<span class="badge" id="alertCount">0</span></button><div class="avatar">J</div><strong>Juan</strong></div></div><nav class="nav" id="nav"></nav></header>
 <main class="container">
 <section id="page-home" class="pageview active">
@@ -136,10 +116,6 @@ Tipo: ${$('driveType').value}
 O site ainda não tem autorização para enviar diretamente ao Google Drive. Vou abrir sua pasta para você enviar o arquivo manualmente.`;alert(message);window.open('https://drive.google.com/drive/folders/16jjw3MruHJeRe1J2U4dZhBvviEQ0kChT','_blank','noopener')});
 try{const h=JSON.parse(localStorage.getItem('juaninv_holerite')||'null');if(h){$('hBase').value=h.base??2287.56;$('hRaise').value=h.raise??3.98;$('hAdvance').value=h.advance??1100;$('hNet').value=h.net??994;calcHolerite()}}catch(e){}
 
-// A interface de login é preparada, mas não finge autenticação real sem backend configurado.
-$('googleLogin').addEventListener('click',()=>alert('Login Google ainda não está conectado. Para ativar, configure OAuth no Google Cloud e um provedor de autenticação (Supabase/Firebase) no projeto publicado.'));
-$('authForm').addEventListener('submit',e=>{e.preventDefault();alert('Cadastro/login seguro ainda não está ativo. Nenhuma senha foi salva. Use a demonstração local apenas para testar a interface; para contas separadas precisamos configurar o backend de autenticação.');});
-$('localDemo').addEventListener('click',()=>{if(confirm('A demonstração salva informações somente neste navegador e NÃO cria conta segura nem separa usuários. Não use dados financeiros reais. Deseja continuar?')){$('authGate').style.display='none';toast('Demonstração local aberta — sem autenticação segura.')}});
 nav();initMonths();initCats();renderTxCardOptions();$('txDate').value=today();$('billDate').value=today();$('invDate').value=today();renderAll();renderNotes();sim();
 })();
 </script>
